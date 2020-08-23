@@ -38,8 +38,11 @@
     /* Utility function to reset the player stats */
     function resetAll() {
         playerMoney = 1000;
+        creditLabel.text = "1000";
         winnings = 0;
         jackpot = 5000;
+        jackPotLabel.text = "5000";
+        winningsLabel.text = "0";
         playerBet = 0;
     }
     let manifest = [
@@ -118,7 +121,7 @@
     }
     /* Utility function to show a win message and increase player money */
     function showWinMessage() {
-        playerMoney += winnings;
+        playerMoney = playerMoney + winnings;
         console.log("You Won: $" + winnings);
         console.log("Your Credits: $" + playerMoney);
         winningsLabel.setText(winnings.toString());
@@ -127,19 +130,27 @@
         // creditLabel.setText(playerMoney.toString());
         jackPotLabel.setText(jackpot.toString());
         resetFruitTally();
-        //playerBet=0;
+        playerBet = 0;
         winnings = 0;
+        creditLabel.setText(playerMoney.toString());
+        betLabel.setText(playerBet.toString());
+        winningsLabel.setText(winnings.toString());
     }
     /* Utility function to show a loss message and reduce player money */
     function showLossMessage() {
         playerMoney -= playerBet;
-        console.log("You Lost: $" + playerBet);
-        console.log("Your Credits: $" + playerMoney);
+        console.log("You Lost1:: $" + playerBet);
+        console.log("Your Credits:: $" + playerMoney);
         // TODO: update creditLabel
-        creditLabel.setText(playerMoney.toString());
+        // creditLabel.setText(playerMoney.toString());
         resetFruitTally();
-        //playerBet=0;
+        playerBet = 0;
         winnings = 0;
+        console.log("You Lost2: Before setting creditLabel");
+        creditLabel.setText(playerMoney.toString());
+        console.log("You Lost3: After setting creditLabel");
+        betLabel.setText(playerBet.toString());
+        winningsLabel.setText(winnings.toString());
     }
     /* When this function is called it determines the betLine results.
     e.g. Bar - Orange - Banana */
@@ -241,7 +252,7 @@
         }
         else {
             showLossMessage();
-            console.log("YOU LOST, Tam");
+            console.log("YOU LOST4, Tam");
         }
     }
     function buildInterface() {
@@ -264,13 +275,13 @@
         quitButton = new UIObjects.Button("quitButton", Config.Screen.CENTER_X - 250, Config.Screen.CENTER_Y + 100, true);
         stage.addChild(quitButton);
         // Labels
-        jackPotLabel = new UIObjects.Label("5000", "20px", "Consolas", "#FF0000", Config.Screen.CENTER_X, Config.Screen.CENTER_Y - 175, true);
+        jackPotLabel = new UIObjects.Label(jackpot.toString(), "20px", "Consolas", "#FF0000", Config.Screen.CENTER_X, Config.Screen.CENTER_Y - 175, true);
         stage.addChild(jackPotLabel);
         creditLabel = new UIObjects.Label(playerMoney.toString(), "20px", "Consolas", "#FF0000", Config.Screen.CENTER_X - 94, Config.Screen.CENTER_Y + 108, true);
         stage.addChild(creditLabel);
         winningsLabel = new UIObjects.Label("0", "20px", "Consolas", "#FF0000", Config.Screen.CENTER_X + 94, Config.Screen.CENTER_Y + 108, true);
         stage.addChild(winningsLabel);
-        betLabel = new UIObjects.Label("playerBet.toString()", "20px", "Consolas", "#FF0000", Config.Screen.CENTER_X, Config.Screen.CENTER_Y + 108, true);
+        betLabel = new UIObjects.Label(playerBet.toString(), "20px", "Consolas", "#FF0000", Config.Screen.CENTER_X, Config.Screen.CENTER_Y + 108, true);
         stage.addChild(betLabel);
         // Reel GameObjects
         leftReel = new Core.GameObject("bell", Config.Screen.CENTER_X - 79, Config.Screen.CENTER_Y - 12, true);
@@ -350,8 +361,8 @@
         jackPotLabel.setText(jackpot.toString());
         winningsLabel.setText("0");
         creditLabel.setText(playerMoney.toString());
-        //betLabel.setText("0");
-        betLabel.setText(playerBet.toString());
+        betLabel.setText("0");
+        //betLabel.setText(playerBet.toString());
         //example of how to replace the images in the reels
         leftReel.image = assets.getResult("blank");
         middleReel.image = assets.getResult("blank");
