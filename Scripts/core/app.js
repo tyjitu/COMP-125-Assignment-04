@@ -1,4 +1,11 @@
-(function () {
+/*File name: app.ts
+Author's name: Tamanna Yasmin Jitu
+Student Id: 300924009
+Web site name: COMP-125-Assignment-4
+Web site URL: https://github.com/tyjitu/COMP-125-Assignment-04
+File description: Create Slot Machine
+
+*/ (function () {
     // Function scoped Variables
     let stage;
     let assets;
@@ -131,10 +138,8 @@
         jackPotLabel.setText(jackpot.toString());
         resetFruitTally();
         playerBet = 0;
-        winnings = 0;
         creditLabel.setText(playerMoney.toString());
         betLabel.setText(playerBet.toString());
-        winningsLabel.setText(winnings.toString());
     }
     /* Utility function to show a loss message and reduce player money */
     function showLossMessage() {
@@ -145,12 +150,10 @@
         // creditLabel.setText(playerMoney.toString());
         resetFruitTally();
         playerBet = 0;
-        winnings = 0;
         console.log("You Lost2: Before setting creditLabel");
         creditLabel.setText(playerMoney.toString());
         console.log("You Lost3: After setting creditLabel");
         betLabel.setText(playerBet.toString());
-        winningsLabel.setText(winnings.toString());
     }
     /* When this function is called it determines the betLine results.
     e.g. Bar - Orange - Banana */
@@ -281,7 +284,7 @@
         stage.addChild(creditLabel);
         winningsLabel = new UIObjects.Label("0", "20px", "Consolas", "#FF0000", Config.Screen.CENTER_X + 94, Config.Screen.CENTER_Y + 108, true);
         stage.addChild(winningsLabel);
-        betLabel = new UIObjects.Label("komol", "20px", "Consolas", "#FF0000", Config.Screen.CENTER_X, Config.Screen.CENTER_Y + 108, true);
+        betLabel = new UIObjects.Label("playerBet.toString()", "20px", "Consolas", "#FF0000", Config.Screen.CENTER_X, Config.Screen.CENTER_Y + 108, true);
         stage.addChild(betLabel);
         // Reel GameObjects
         leftReel = new Core.GameObject("bell", Config.Screen.CENTER_X - 79, Config.Screen.CENTER_Y - 12, true);
@@ -323,34 +326,29 @@
         bet1Button.on("click", () => {
             playerBet += 1;
             //TODO: update the playerBetLabel
-            // betLabel.setText("0");
             betLabel.setText(playerBet.toString());
             console.log("Player Bet is : " + playerBet);
         });
         bet10Button.on("click", () => {
             playerBet += 10;
             //TODO: update the playerBetLabel
-            //betLabel.setText("0");
             betLabel.setText(playerBet.toString());
             console.log("Player Bet is : " + playerBet);
         });
         bet100Button.on("click", () => {
             playerBet += 100;
             //TODO: update the playerBetLabel
-            //betLabel.setText("0");
             betLabel.setText(playerBet.toString());
             console.log("Player Bet is : " + playerBet);
         });
         betMaxButton.on("click", () => {
             playerBet += playerMoney;
             //TODO: update the playerBetLabel
-            //betLabel.setText("0");
             betLabel.setText(playerBet.toString());
             console.log("Player Bet is : " + playerBet);
         });
         quitButton.on("click", () => {
             console.log("quitButton Button Clicked");
-            //spinButton.addEventListener("click", spinButton);
             alert("Thank You For Playing the Game!");
         });
         resetButton.on("click", () => {
