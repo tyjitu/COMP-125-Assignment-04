@@ -270,9 +270,9 @@
         stage.addChild(bet100Button);
         betMaxButton = new UIObjects.Button("betMaxButton", Config.Screen.CENTER_X + 67, Config.Screen.CENTER_Y + 176, true);
         stage.addChild(betMaxButton);
-        resetButton = new UIObjects.Button("resetButton", Config.Screen.CENTER_X - 250, Config.Screen.CENTER_Y + 20, true);
+        resetButton = new UIObjects.Button("resetButton", Config.Screen.CENTER_X - 225, Config.Screen.CENTER_Y + 106, true);
         stage.addChild(resetButton);
-        quitButton = new UIObjects.Button("quitButton", Config.Screen.CENTER_X - 250, Config.Screen.CENTER_Y + 100, true);
+        quitButton = new UIObjects.Button("quitButton", Config.Screen.CENTER_X - 225, Config.Screen.CENTER_Y + 176, true);
         stage.addChild(quitButton);
         // Labels
         jackPotLabel = new UIObjects.Label(jackpot.toString(), "20px", "Consolas", "#FF0000", Config.Screen.CENTER_X, Config.Screen.CENTER_Y - 175, true);
@@ -281,7 +281,7 @@
         stage.addChild(creditLabel);
         winningsLabel = new UIObjects.Label("0", "20px", "Consolas", "#FF0000", Config.Screen.CENTER_X + 94, Config.Screen.CENTER_Y + 108, true);
         stage.addChild(winningsLabel);
-        betLabel = new UIObjects.Label(playerBet.toString(), "20px", "Consolas", "#FF0000", Config.Screen.CENTER_X, Config.Screen.CENTER_Y + 108, true);
+        betLabel = new UIObjects.Label("komol", "20px", "Consolas", "#FF0000", Config.Screen.CENTER_X, Config.Screen.CENTER_Y + 108, true);
         stage.addChild(betLabel);
         // Reel GameObjects
         leftReel = new Core.GameObject("bell", Config.Screen.CENTER_X - 79, Config.Screen.CENTER_Y - 12, true);
@@ -355,14 +355,18 @@
         });
         resetButton.on("click", () => {
             console.log("resetButton Button Clicked");
+            resetInterface();
         });
     }
     function resetInterface() {
+        jackpot = 5000;
+        playerMoney = 1000;
+        playerBet = 0;
+        winnings = 0;
         jackPotLabel.setText(jackpot.toString());
-        winningsLabel.setText("0");
         creditLabel.setText(playerMoney.toString());
-        betLabel.setText("0");
-        //betLabel.setText(playerBet.toString());
+        betLabel.setText(playerBet.toString());
+        winningsLabel.setText(winnings.toString());
         //example of how to replace the images in the reels
         leftReel.image = assets.getResult("blank");
         middleReel.image = assets.getResult("blank");
