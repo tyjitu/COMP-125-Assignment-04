@@ -144,15 +144,13 @@ File description: Create Slot Machine
     /* Utility function to show a loss message and reduce player money */
     function showLossMessage() {
         playerMoney -= playerBet;
-        console.log("You Lost1:: $" + playerBet);
-        console.log("Your Credits:: $" + playerMoney);
+        console.log("You Lost: $" + playerBet);
+        console.log("Your Credits: $" + playerMoney);
         // TODO: update creditLabel
         // creditLabel.setText(playerMoney.toString());
         resetFruitTally();
         playerBet = 0;
-        console.log("You Lost2: Before setting creditLabel");
         creditLabel.setText(playerMoney.toString());
-        console.log("You Lost3: After setting creditLabel");
         betLabel.setText(playerBet.toString());
     }
     /* When this function is called it determines the betLine results.
@@ -251,11 +249,11 @@ File description: Create Slot Machine
                 winnings = playerBet * 1;
             }
             showWinMessage();
-            console.log("YOU WIN, Tam");
+            console.log("YOU WIN!!");
         }
         else {
             showLossMessage();
-            console.log("YOU LOST4, Tam");
+            console.log("YOU LOST...");
         }
     }
     function buildInterface() {
@@ -352,7 +350,7 @@ File description: Create Slot Machine
             alert("Thank You For Playing the Game!");
         });
         resetButton.on("click", () => {
-            console.log("resetButton Button Clicked");
+            console.log("Reset Button  Clicked");
             resetInterface();
         });
     }
